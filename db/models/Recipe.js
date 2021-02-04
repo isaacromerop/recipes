@@ -18,6 +18,10 @@ const RecipeSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  created: {
+    type: String,
+    default: new Date().toISOString(),
+  },
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);

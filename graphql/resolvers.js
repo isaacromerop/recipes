@@ -48,7 +48,9 @@ const resolvers = {
       try {
         const userRecipes = await Recipe.find({
           user: ctx.user.id.toString(),
-        }).populate("user");
+        })
+          .populate("user")
+          .sort({ created: -1 });
         return userRecipes;
       } catch (error) {
         console.log(error);

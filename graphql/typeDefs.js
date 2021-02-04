@@ -10,6 +10,7 @@ const typeDefs = gql`
     id: ID!
     title: String!
     image: String!
+    created: String!
     summary: String
     analyzedInstructions: [Instruction]
     spoonacularSourceUrl: String
