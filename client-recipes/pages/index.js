@@ -1,5 +1,4 @@
 import Head from "next/head";
-import "semantic-ui-css/semantic.min.css";
 import { motion } from "framer-motion";
 import { showUp, appear } from "../styles/animations";
 import Link from "next/link";
