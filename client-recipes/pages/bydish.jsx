@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { showUp } from "../styles/animations";
-import { Card, Icon, Image, Grid } from "semantic-ui-react";
+import { showUp, appearUp, scaleUp } from "../styles/animations";
+import { Card, Icon, Image, Grid, Button } from "semantic-ui-react";
 
 const ByDish = () => {
   const [dish, setDish] = useState("");
@@ -12,96 +12,24 @@ const ByDish = () => {
       animate="visible"
       className="dish-main-container"
     >
-      <div className="dish-head">
+      <motion.div variants={appearUp} className="dish-head">
+        <p htmlFor="bydish">What dish are you looking for?</p>
         <div className="dish-search">
-          <label htmlFor="bydish">Enter your dish</label>
           <input
+            id="bydish"
             value={dish}
             onChange={(e) => setDish(e.target.value)}
             type="text"
             placeholder="Example: Pasta..."
           />
-          <button type="submit">Search</button>
+          <button type="submit">
+            <Icon fitted name="search" />
+          </button>
         </div>
-      </div>
-      <div className="dish-body">
+      </motion.div>
+      <motion.div variants={scaleUp} className="dish-body">
         <Grid centered columns={4}>
           <Grid.Row>
-            <Grid.Column>
-              <Card style={{ marginBottom: 30 }}>
-                <Image
-                  size="medium"
-                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                  wrapped
-                  ui={false}
-                />
-                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
-                    <span className="date">Joined in 2015</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <a>
-                    <Icon name="user" />
-                    22 Friends
-                  </a>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
-            <Grid.Column>
-              <Card>
-                <Image
-                  size="medium"
-                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                  wrapped
-                  ui={false}
-                />
-                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
-                    <span className="date">Joined in 2015</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <a>
-                    <Icon name="user" />
-                    22 Friends
-                  </a>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
-            <Grid.Column>
-              <Card>
-                <Image
-                  size="medium"
-                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                  wrapped
-                  ui={false}
-                />
-                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
-                    <span className="date">Joined in 2015</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <a>
-                    <Icon name="user" />
-                    22 Friends
-                  </a>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
             <Grid.Column>
               <Card>
                 <Image
@@ -129,7 +57,7 @@ const ByDish = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

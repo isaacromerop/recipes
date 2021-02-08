@@ -27,8 +27,7 @@ a {
   align-items: center;
 }
 .content-container {
-  backdrop-filter: blur(10px);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
   width: 40vw;
   height: 35vh;
 }
@@ -72,8 +71,12 @@ a {
   border: 2px solid #b3b956;
 }
 .dish-main-container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: url("../public/BG-3.jpg");
+  background-size: cover;
 }
 .dish-head {
   display: flex;
@@ -81,13 +84,56 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 7rem;
+  height: 8rem;
   margin-bottom: 2rem;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2));
 }
-.dish-search {
-  display: flex;
-  flex-direction: column;
+.dish-head p {
+  font-family: "Lobster Two", cursive;
+  font-size: 3rem;
+  color: #eff4f7d0;
+  margin: 0;
 }
 .dish-body {
   margin: 0 2rem;
+}
+.dish-search {
+  width: 25rem;
+  height: 10rem;
+}
+.dish-search input {
+  width: 80%;
+  height: 3rem;
+  font-family: "Roboto Condensed", sans-serif;
+  border: none;
+  margin-right: 0.5rem;
+  background-color: transparent;
+  border-bottom: 2px solid #eff4f7d0;
+  color: #eff4f7d0;
+  padding: 1rem;
+}
+.dish-search input:focus {
+  outline: none;
+  box-shadow: 0 8px 6px -6px black;
+  transform: scale(1.1);
+  transition: 0.5s ease;
+  border-bottom: 2px solid #b3b956;
+}
+.dish-search button {
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid #eff4f7d0;
+  z-index: 1;
+  background-color: transparent;
+}
+.dish-search button:hover {
+  background-color: #b3b956;
+}
+.dish-search i {
+  color: #ececdd;
+}
+.dish-search button:focus {
+  outline: none;
 }
