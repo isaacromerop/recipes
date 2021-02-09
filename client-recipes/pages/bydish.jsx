@@ -1,10 +1,41 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { showUp, appearUp, scaleUp } from "../styles/animations";
-import { Card, Icon, Image, Grid, Button } from "semantic-ui-react";
+import { Icon, Grid } from "semantic-ui-react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useLazyQuery, gql } from "@apollo/client";
+import RecipePreview from "../components/RecipePreview";
+
+const GET_RECIPES = gql`
+  query getRecipes($recipe: String!) {
+    getRecipes(recipe: $recipe) {
+      id
+      title
+      image
+    }
+  }
+`;
 
 const ByDish = () => {
-  const [dish, setDish] = useState("");
+  const [error, setError] = useState(null);
+  const [getRecipes, { data, loading }] = useLazyQuery(GET_RECIPES);
+  const formik = useFormik({
+    initialValues: {
+      recipe: "",
+    },
+    validationSchema: Yup.object({
+      recipe: Yup.string().required("What are you going to cook?"),
+    }),
+    onSubmit: async (values) => {
+      getRecipes({
+        variables: {
+          recipe: formik.values.recipe,
+        },
+      });
+    },
+  });
+  if (loading) return <h1>Loading...</h1>;
   return (
     <motion.div
       variants={showUp}
@@ -15,46 +46,37 @@ const ByDish = () => {
       <motion.div variants={appearUp} className="dish-head">
         <p htmlFor="bydish">What dish are you looking for?</p>
         <div className="dish-search">
-          <input
-            id="bydish"
-            value={dish}
-            onChange={(e) => setDish(e.target.value)}
-            type="text"
-            placeholder="Example: Pasta..."
-          />
-          <button type="submit">
-            <Icon fitted name="search" />
-          </button>
+          <form onSubmit={formik.handleSubmit}>
+            <div>
+              <input
+                name="recipe"
+                type="text"
+                placeholder="Example: Pasta..."
+                value={formik.values.recipe}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <button type="submit">
+                <Icon fitted name="search" />
+              </button>
+            </div>
+          </form>
         </div>
       </motion.div>
       <motion.div variants={scaleUp} className="dish-body">
         <Grid centered columns={4}>
           <Grid.Row>
-            <Grid.Column>
-              <Card>
-                <Image
-                  size="medium"
-                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                  wrapped
-                  ui={false}
-                />
-                <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
-                  <Card.Meta>
-                    <span className="date">Joined in 2015</span>
-                  </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <a>
-                    <Icon name="user" />
-                    22 Friends
-                  </a>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
+            {data &&
+              data.getRecipes &&
+              data.getRecipes.map((recipe) => (
+                <Grid.Column key={recipe.id} style={{ marginBottom: 30 }}>
+                  <RecipePreview
+                    id={recipe.id}
+                    title={recipe.title}
+                    img={recipe.image}
+                  />
+                </Grid.Column>
+              ))}
           </Grid.Row>
         </Grid>
       </motion.div>

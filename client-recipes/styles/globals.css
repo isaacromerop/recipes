@@ -84,7 +84,7 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 8rem;
+  height: 9rem;
   margin-bottom: 2rem;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2));
 }
@@ -100,6 +100,7 @@ a {
 .dish-search {
   width: 25rem;
   height: 10rem;
+  position: relative;
 }
 .dish-search input {
   width: 80%;
@@ -130,10 +131,22 @@ a {
 }
 .dish-search button:hover {
   background-color: #b3b956;
+  transform: scale(1.1);
+  transition: 0.3s ease;
 }
 .dish-search i {
   color: #ececdd;
 }
 .dish-search button:focus {
   outline: none;
+}
+.error-container {
+  position: absolute;
+  width: 20rem;
+  height: 5rem;
+}
+.error-container p {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #b95656;
+  font-size: 0.8rem;
 }
