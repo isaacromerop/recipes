@@ -96,6 +96,10 @@ a {
 }
 .dish-body {
   margin: 0 2rem;
+  height: 95vh;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .dish-search {
   width: 25rem;
@@ -119,6 +123,9 @@ a {
   transform: scale(1.1);
   transition: 0.5s ease;
   border-bottom: 2px solid #b3b956;
+}
+.dish-search input::selection {
+  background: #a8d1ff;
 }
 .dish-search button {
   cursor: pointer;

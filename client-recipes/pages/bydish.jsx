@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useLazyQuery, gql } from "@apollo/client";
 import RecipePreview from "../components/RecipePreview";
+import Loading from "../components/Loading";
 
 const GET_RECIPES = gql`
   query getRecipes($recipe: String!) {
@@ -35,7 +36,7 @@ const ByDish = () => {
       });
     },
   });
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading />;
   return (
     <motion.div
       variants={showUp}
