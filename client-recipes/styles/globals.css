@@ -157,3 +157,15 @@ a {
   color: #b95656;
   font-size: 0.8rem;
 }
+.card-header {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.card-header:hover {
+  color: #d9e43f;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+}

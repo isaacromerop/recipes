@@ -64,23 +64,31 @@ const ByDish = () => {
           </form>
         </div>
       </motion.div>
-      <motion.div variants={scaleUp} className="dish-body">
-        <Grid centered columns={4}>
-          <Grid.Row>
-            {data &&
-              data.getRecipes &&
-              data.getRecipes.map((recipe) => (
-                <Grid.Column key={recipe.id} style={{ marginBottom: 30 }}>
-                  <RecipePreview
-                    id={recipe.id}
-                    title={recipe.title}
-                    img={recipe.image}
-                  />
-                </Grid.Column>
-              ))}
-          </Grid.Row>
-        </Grid>
-      </motion.div>
+      {data && data.getRecipes && (
+        <motion.div variants={scaleUp} className="dish-body">
+          <Grid centered columns={4}>
+            {data.getRecipes.length > 0 ? (
+              <Grid.Row>
+                {data &&
+                  data.getRecipes &&
+                  data.getRecipes.map((recipe) => (
+                    <Grid.Column key={recipe.id} style={{ marginBottom: 30 }}>
+                      <RecipePreview
+                        id={recipe.id}
+                        title={recipe.title}
+                        img={recipe.image}
+                      />
+                    </Grid.Column>
+                  ))}
+              </Grid.Row>
+            ) : (
+              <h1 style={{ margin: "2rem 0", color: "#eff4f7d0" }}>
+                Oops! We could not find your dish.
+              </h1>
+            )}
+          </Grid>
+        </motion.div>
+      )}
     </motion.div>
   );
 };
