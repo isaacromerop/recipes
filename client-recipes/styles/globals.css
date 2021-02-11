@@ -163,9 +163,31 @@ a {
   font-size: 1.2rem;
 }
 .card-header:hover {
-  color: #d9e43f;
+  color: #b3b956;
 }
 .card-meta {
   display: flex;
   justify-content: space-between;
+}
+.recipe-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.recipe-image {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
+.recipe-body {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

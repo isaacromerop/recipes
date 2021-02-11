@@ -36,27 +36,31 @@ const Recipe = () => {
     <div>
       {data && data.getRecipe ? (
         <div className="recipe-container">
-          <div className="recipe-head">
-            <h1>{data.getRecipe.title}</h1>
-          </div>
-          <div className="recipe-body">
-            <div className="">
+          <div className="recipe-image">
+            <div className="image-container">
               <img src={data.getRecipe.image} />
             </div>
-            <div className="">
-              <div
-                dangerouslySetInnerHTML={{ __html: data.getRecipe.summary }}
-              ></div>
-            </div>
-            <div className="steps">
-              <ol>
-                {data.getRecipe.analyzedInstructions[0].steps.map((step) => (
-                  <li key={step.number}>{step.step}</li>
-                ))}
-              </ol>
-            </div>
-            <div className="source">
-              <a href={data.getRecipe.spoonacularSourceUrl}>More info...</a>
+          </div>
+          <div className="recipe-body">
+            <div className="body-container">
+              <div className="recipe-head">
+                <h1>{data.getRecipe.title}</h1>
+              </div>
+              <div className="recipe-summary">
+                <div
+                  dangerouslySetInnerHTML={{ __html: data.getRecipe.summary }}
+                ></div>
+              </div>
+              <div className="steps">
+                <ol>
+                  {data.getRecipe.analyzedInstructions[0].steps.map((step) => (
+                    <li key={step.number}>{step.step}</li>
+                  ))}
+                </ol>
+              </div>
+              <div className="source">
+                <a href={data.getRecipe.spoonacularSourceUrl}>More info...</a>
+              </div>
             </div>
           </div>
         </div>
