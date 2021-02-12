@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { showUp, appearUp, scaleUp } from "../styles/animations";
 import { Icon, Grid } from "semantic-ui-react";
@@ -19,7 +19,6 @@ const GET_RECIPES = gql`
 `;
 
 const ByDish = () => {
-  const [error, setError] = useState(null);
   const [getRecipes, { data, loading }] = useLazyQuery(GET_RECIPES);
   const formik = useFormik({
     initialValues: {
