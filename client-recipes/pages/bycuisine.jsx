@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useLazyQuery, gql } from "@apollo/client";
 import RecipePreview from "../components/RecipePreview";
 import Loading from "../components/Loading";
+import { cuisineOptions } from "../cuisine-options";
 
 const GET_RECIPES = gql`
   query getRecipes($recipe: String!) {
@@ -22,17 +23,15 @@ const ByDish = () => {
   const [getRecipes, { data, loading }] = useLazyQuery(GET_RECIPES);
   const formik = useFormik({
     initialValues: {
-      recipe: "",
+      cuisine: "",
     },
     validationSchema: Yup.object({
-      recipe: Yup.string().required("What are you going to cook?"),
+      cuisine: Yup.string().required("What are you going to cook?"),
     }),
     onSubmit: async (values) => {
-      getRecipes({
-        variables: {
-          recipe: formik.values.recipe,
-        },
-      });
+      if (values.cuisine !== "false") {
+        console.log(values);
+      }
     },
   });
   if (loading) return <Loading />;
@@ -48,14 +47,18 @@ const ByDish = () => {
         <div className="dish-search">
           <form onSubmit={formik.handleSubmit}>
             <div>
-              <input
-                name="recipe"
-                type="text"
-                placeholder="Example: Pasta..."
-                value={formik.values.recipe}
+              <select
                 onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+                value={formik.values.cuisine}
+                name="cuisine"
+              >
+                <option value={false}>Select option from list...</option>
+                {cuisineOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
               <button type="submit">
                 <Icon fitted name="search" />
               </button>

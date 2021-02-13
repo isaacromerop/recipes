@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../../components/Loading";
+import Link from "next/link";
 
 const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
@@ -58,9 +59,12 @@ const Recipe = () => {
                   ))}
                 </ol>
               </div>
-              <div className="source">
-                <a href={data.getRecipe.spoonacularSourceUrl}>More info...</a>
-              </div>
+              <Link
+                href={data.getRecipe.spoonacularSourceUrl}
+                className="source"
+              >
+                <a target="_blank">More info...</a>
+              </Link>
             </div>
           </div>
         </div>
