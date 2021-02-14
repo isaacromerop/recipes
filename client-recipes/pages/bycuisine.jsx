@@ -9,9 +9,9 @@ import RecipePreview from "../components/RecipePreview";
 import Loading from "../components/Loading";
 import { cuisineOptions } from "../cuisine-options";
 
-const GET_RECIPES = gql`
-  query getRecipes($recipe: String!) {
-    getRecipes(recipe: $recipe) {
+const GET_RECIPES_BY_CUISINE = gql`
+  query getRecipeByCuisine($cuisine: String!) {
+    getRecipeByCuisine(cuisine: $cuisine) {
       id
       title
       image
@@ -20,7 +20,9 @@ const GET_RECIPES = gql`
 `;
 
 const ByDish = () => {
-  const [getRecipes, { data, loading }] = useLazyQuery(GET_RECIPES);
+  const [getRecipeByCuisine, { data, loading }] = useLazyQuery(
+    GET_RECIPES_BY_CUISINE
+  );
   const formik = useFormik({
     initialValues: {
       cuisine: "",
@@ -28,9 +30,17 @@ const ByDish = () => {
     validationSchema: Yup.object({
       cuisine: Yup.string().required("What are you going to cook?"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       if (values.cuisine !== "false") {
-        console.log(values);
+        try {
+          getRecipeByCuisine({
+            variables: {
+              cuisine: formik.values.cuisine,
+            },
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   });
@@ -48,6 +58,7 @@ const ByDish = () => {
           <form onSubmit={formik.handleSubmit}>
             <div>
               <select
+                className="cuisine-select"
                 onChange={formik.handleChange}
                 value={formik.values.cuisine}
                 name="cuisine"
@@ -66,14 +77,14 @@ const ByDish = () => {
           </form>
         </div>
       </motion.div>
-      {data && data.getRecipes && (
+      {data && data.getRecipeByCuisine && (
         <motion.div variants={scaleUp} className="dish-body">
           <Grid centered columns={4}>
-            {data.getRecipes.length > 0 ? (
+            {data.getRecipeByCuisine.length > 0 ? (
               <Grid.Row>
                 {data &&
-                  data.getRecipes &&
-                  data.getRecipes.map((recipe) => (
+                  data.getRecipeByCuisine &&
+                  data.getRecipeByCuisine.map((recipe) => (
                     <Grid.Column key={recipe.id} style={{ marginBottom: 30 }}>
                       <RecipePreview
                         id={recipe.id}

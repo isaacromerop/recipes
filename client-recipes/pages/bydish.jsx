@@ -27,7 +27,7 @@ const ByDish = () => {
     validationSchema: Yup.object({
       recipe: Yup.string().required("What are you going to cook?"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       getRecipes({
         variables: {
           recipe: formik.values.recipe,
