@@ -19,7 +19,7 @@ const RecipePreview = ({ id, title, img }) => {
           {title}
         </div>
         <Card.Meta className="card-meta">
-          <span className="date">{id}</span>
+          <span className="date">id: {id}</span>
           <SaveButton />
         </Card.Meta>
       </Card.Content>

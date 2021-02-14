@@ -148,16 +148,6 @@ a {
 .dish-search button:focus {
   outline: none;
 }
-.error-container {
-  position: absolute;
-  width: 20rem;
-  height: 5rem;
-}
-.error-container p {
-  font-family: "Roboto Condensed", sans-serif;
-  color: #b95656;
-  font-size: 0.8rem;
-}
 .card-header {
   cursor: pointer;
   font-weight: bold;

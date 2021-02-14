@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../../components/Loading";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { showUp } from "../../styles/animations";
 
 const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
@@ -34,7 +36,7 @@ const Recipe = () => {
   });
   if (loading) return <Loading />;
   return (
-    <div>
+    <motion.div variants={showUp} initial="hidden" animate="visible">
       {data && data.getRecipe ? (
         <div className="recipe-container">
           <div className="recipe-image">
@@ -71,7 +73,7 @@ const Recipe = () => {
       ) : (
         <button onClick={() => router.push("/")}>Back</button>
       )}
-    </div>
+    </motion.div>
   );
 };
 
