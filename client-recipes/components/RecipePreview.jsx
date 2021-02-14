@@ -13,7 +13,7 @@ const RecipePreview = ({ id, title, img }) => {
   };
   return (
     <Card fluid>
-      <Image size="medium" src={img} width="250" />
+      <Image size="medium" src={img} />
       <Card.Content>
         <div onClick={() => recipeDetails(id)} className="card-header">
           {title}

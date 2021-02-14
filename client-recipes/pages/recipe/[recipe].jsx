@@ -4,7 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loading from "../../components/Loading";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { showUp } from "../../styles/animations";
+import { scaleUp, showUp, appearRight } from "../../styles/animations";
 
 const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
@@ -36,15 +36,20 @@ const Recipe = () => {
   });
   if (loading) return <Loading />;
   return (
-    <motion.div variants={showUp} initial="hidden" animate="visible">
+    <motion.div
+      variants={showUp}
+      initial="hidden"
+      animate="visible"
+      className="recipe-main-container"
+    >
       {data && data.getRecipe ? (
         <div className="recipe-container">
           <div className="recipe-image">
-            <div className="image-container">
+            <motion.div variants={scaleUp} className="image-container">
               <img src={data.getRecipe.image} />
-            </div>
+            </motion.div>
           </div>
-          <div className="recipe-body">
+          <motion.div variants={appearRight} className="recipe-body">
             <div className="body-container">
               <div className="recipe-head">
                 <h1>{data.getRecipe.title}</h1>
@@ -68,7 +73,7 @@ const Recipe = () => {
                 <a target="_blank">More info...</a>
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       ) : (
         <button onClick={() => router.push("/")}>Back</button>

@@ -160,10 +160,25 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.recipe-main-container {
+  background-image: url("../public/BG-5.jpg");
+  background-size: cover;
+}
 .recipe-container {
   display: flex;
   width: 100vw;
   height: 100vh;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+.image-container {
+  border: 5px solid #b3b956;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .recipe-image {
   margin: 1rem;
@@ -175,6 +190,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #ececdd;
 }
 .body-container {
   height: 90%;

@@ -22,6 +22,19 @@ export const appearLeft = {
     },
   },
 };
+export const appearRight = {
+  hidden: {
+    x: "200vw",
+  },
+  visible: {
+    x: 0,
+    transition: {
+      delay: 1,
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
 export const appearUp = {
   hidden: {
     y: "-100vh",
