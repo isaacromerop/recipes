@@ -15,9 +15,16 @@ const typeDefs = gql`
     analyzedInstructions: [Instruction]
     spoonacularSourceUrl: String
     user: String
+    extendedIngredients: [Ingredient]
+    readyInMinutes: Int
+    servings: Int
   }
   type Instruction {
     steps: [Step]
+  }
+  type Ingredient {
+    id: ID
+    originalString: String
   }
   type Step {
     number: Int

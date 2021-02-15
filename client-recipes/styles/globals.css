@@ -99,7 +99,7 @@ a {
   margin: 0 2rem;
   height: 95vh;
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .dish-search {
@@ -191,12 +191,25 @@ a {
   justify-content: center;
   align-items: center;
   color: #ececdd;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .body-container {
   height: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  overflow-y: auto;
+  height: 95vh;
+  scroll-behavior: smooth;
+}
+.recipe-head {
+  margin-bottom: 1rem;
+}
+.recipe-head h1 {
+  font-family: "Lobster Two", cursive;
+  font-size: 2.5rem;
+}
+.ingredients {
+  width: 100%;
 }
 .cuisine-main-container {
   width: 100vw;

@@ -13,11 +13,17 @@ const GET_RECIPE = gql`
       title
       image
       summary
+      servings
+      readyInMinutes
       analyzedInstructions {
         steps {
           number
           step
         }
+      }
+      extendedIngredients {
+        id
+        originalString
       }
       spoonacularSourceUrl
     }
@@ -55,9 +61,16 @@ const Recipe = () => {
                 <h1>{data.getRecipe.title}</h1>
               </div>
               <div className="recipe-summary">
-                <div
+                <p
                   dangerouslySetInnerHTML={{ __html: data.getRecipe.summary }}
-                ></div>
+                ></p>
+              </div>
+              <div className="ingredients">
+                <ul>
+                  {data.getRecipe.extendedIngredients.map((ingredient) => (
+                    <li key={ingredient.number}>{ingredient.originalString}</li>
+                  ))}
+                </ul>
               </div>
               <div className="steps">
                 <ol>
