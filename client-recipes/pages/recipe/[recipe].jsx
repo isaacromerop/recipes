@@ -5,6 +5,7 @@ import Loading from "../../components/Loading";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { scaleUp, showUp, appearRight } from "../../styles/animations";
+import { Icon } from "semantic-ui-react";
 
 const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
@@ -65,10 +66,20 @@ const Recipe = () => {
                   dangerouslySetInnerHTML={{ __html: data.getRecipe.summary }}
                 ></p>
               </div>
+              <div className="recipe-info">
+                <div className="ready-in-minutes">
+                  <Icon name="clock outline" size="big" />
+                  <span>Ready in: {data.getRecipe.readyInMinutes} minutes</span>
+                </div>
+                <div className="servings">
+                  <Icon name="food" size="big" />
+                  <span>Servings: {data.getRecipe.servings}</span>
+                </div>
+              </div>
               <div className="ingredients">
                 <ul>
                   {data.getRecipe.extendedIngredients.map((ingredient) => (
-                    <li key={ingredient.number}>{ingredient.originalString}</li>
+                    <li key={ingredient.id}>{ingredient.originalString}</li>
                   ))}
                 </ul>
               </div>

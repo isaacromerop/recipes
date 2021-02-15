@@ -193,6 +193,18 @@ a {
   color: #ececdd;
   font-family: "Roboto Condensed", sans-serif;
 }
+.recipe-info {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem;
+}
+.ready-in-minutes,
+.servings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .body-container {
   height: 90%;
   display: flex;
