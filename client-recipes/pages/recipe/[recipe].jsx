@@ -100,7 +100,9 @@ const Recipe = () => {
           </motion.div>
         </div>
       ) : (
-        <button onClick={() => router.push("/")}>Back</button>
+        <div className="goback">
+          <button onClick={() => router.push("/")}>Back</button>
+        </div>
       )}
     </motion.div>
   );

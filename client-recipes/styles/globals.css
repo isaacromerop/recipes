@@ -249,3 +249,21 @@ a {
   border-bottom: 2px solid #b3b956;
   color: #b3b956;
 }
+.goback {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+.goback button {
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+}
