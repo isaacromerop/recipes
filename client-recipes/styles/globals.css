@@ -16,16 +16,6 @@ a {
   box-sizing: border-box;
 }
 
-.navbar {
-  position: absolute;
-  width: 100vw;
-  height: 3rem;
-  display: flex;
-  justify-content: space-between;
-  z-index: 1;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
-}
-
 .main-container {
   width: 100vw;
   height: 100vh;
@@ -35,6 +25,49 @@ a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.navbar {
+  position: absolute;
+  width: 100vw;
+  height: 3rem;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+}
+.nav-container {
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-container .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ececdd;
+  font-size: 1.5rem;
+}
+.navigation a {
+  margin: 0 1rem;
+}
+.navigation a:last-child {
+  margin-right: 0;
+}
+.navigation button {
+  margin: 0 1rem;
+  font-family: "Roboto Condensed", sans-serif;
+  height: 3rem;
+  width: 6rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid;
+  color: #eff4f7d0;
+}
+.navigation button:focus {
+  outline: none;
+}
+.navigation button:hover {
+  color: #dae085;
+  border-bottom: 2px solid #b3b956;
 }
 .content-container {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
