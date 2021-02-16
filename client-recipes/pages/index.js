@@ -2,6 +2,7 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import { showUp, appearLeft } from "../styles/animations";
 import Link from "next/link";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         exit="exit"
         key="main-div"
       >
+        <NavBar />
         <div className="main-container">
           <motion.div
             variants={appearLeft}

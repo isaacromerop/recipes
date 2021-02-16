@@ -101,7 +101,16 @@ const Recipe = () => {
         </div>
       ) : (
         <div className="goback">
-          <button onClick={() => router.push("/")}>Back</button>
+          <Link href="/bydish">
+            <a>
+              <button>by Dishes</button>
+            </a>
+          </Link>
+          <Link href="/bycuisine">
+            <a>
+              <button>by Cuisine</button>
+            </a>
+          </Link>
         </div>
       )}
     </motion.div>

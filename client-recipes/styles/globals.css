@@ -16,6 +16,16 @@ a {
   box-sizing: border-box;
 }
 
+.navbar {
+  position: absolute;
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+}
+
 .main-container {
   width: 100vw;
   height: 100vh;
@@ -52,7 +62,8 @@ a {
   flex-direction: row;
   justify-content: flex-start;
 }
-.button-container button {
+.button-container button,
+.goback button {
   margin: 0 1rem;
   font-family: "Roboto Condensed", sans-serif;
   height: 2.5rem;
@@ -63,10 +74,12 @@ a {
   border: 2px solid;
   color: #eff4f7d0;
 }
-.button-container button:focus {
+.button-container button:focus,
+.goback button:focus {
   outline: none;
 }
-.button-container button:hover {
+.button-container button:hover,
+.goback button:hover {
   color: #dae085;
   border: 2px solid #b3b956;
 }
@@ -260,10 +273,4 @@ a {
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.75)
   );
-}
-.goback button {
-  width: 6rem;
-  height: 2rem;
-  border: none;
-  cursor: pointer;
 }
