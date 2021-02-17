@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useLazyQuery, gql } from "@apollo/client";
 import RecipePreview from "../components/RecipePreview";
 import Loading from "../components/Loading";
+import { useRouter } from "next/router";
 
 const GET_RECIPES = gql`
   query getRecipes($recipe: String!) {
@@ -20,6 +21,7 @@ const GET_RECIPES = gql`
 
 const ByDish = () => {
   const [getRecipes, { data, loading }] = useLazyQuery(GET_RECIPES);
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       recipe: "",
@@ -45,6 +47,9 @@ const ByDish = () => {
     >
       <motion.div variants={appearUp} className="dish-head">
         <p htmlFor="bydish">What dish are you looking for?</p>
+        <button onClick={() => router.push("/")} className="back-button">
+          <Icon name="arrow left" size="big" />
+        </button>
         <div className="dish-search">
           <form onSubmit={formik.handleSubmit}>
             <div>

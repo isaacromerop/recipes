@@ -62,6 +62,9 @@ a {
   border-bottom: 2px solid;
   color: #eff4f7d0;
 }
+.navigation button:last-child {
+  margin-right: 0;
+}
 .navigation button:focus {
   outline: none;
 }
@@ -125,6 +128,7 @@ a {
   background-size: cover;
 }
 .dish-head {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -306,4 +310,25 @@ a {
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.75)
   );
+}
+
+.back-button {
+  position: absolute;
+  left: 3rem;
+  font-family: "Roboto Condensed", sans-serif;
+  height: 3rem;
+  width: 6rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #eff4f7d0;
+  transition: 0.3s ease;
+}
+.back-button:focus {
+  outline: none;
+}
+.back-button:hover {
+  color: #dae085;
+  border-bottom: 2px solid #b3b956;
 }
