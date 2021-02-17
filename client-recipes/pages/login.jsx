@@ -26,25 +26,29 @@ const Login = () => {
       animate="visible"
     >
       <div className="login-content">
-        <h1>Log In</h1>
-        <motion.form variants={scaleUp} onSubmit={formik.handleSubmit}>
-          <div>
-            <label htmlFor="email">Enter your email here:</label>
-            <input
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Enter your password here:</label>
-            <input
-              type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-          </div>
-        </motion.form>
+        <div className="login-form">
+          <h1>Log In</h1>
+          <motion.form variants={scaleUp} onSubmit={formik.handleSubmit}>
+            <div className="login-email">
+              <label htmlFor="email">Email:</label>
+              <input
+                name="email"
+                type="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+              />
+            </div>
+            <div className="login-email">
+              <label htmlFor="password">Password:</label>
+              <input
+                name="password"
+                type="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+              />
+            </div>
+          </motion.form>
+        </div>
       </div>
     </motion.div>
   );

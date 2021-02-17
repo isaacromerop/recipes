@@ -335,10 +335,6 @@ a {
 .login-page {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-image: url("../public/BG-2.jpg");
   background-size: cover;
   background-position: center;
@@ -347,11 +343,59 @@ a {
   font-family: "Roboto Condensed", sans-serif;
 }
 .login-content {
-  width: 30vw;
-  height: 50vh;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.9)
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.75)
   );
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 60vh;
+  width: 40vw;
+}
+.login-form h1 {
+  margin: 0;
+}
+.login-email,
+.login-password {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+}
+.login-email label,
+.login-password label {
+  margin: 0.7rem 0;
+  text-align: left;
+}
+.login-email input,
+.login-password input {
+  border: none;
+  border-bottom: 2px solid #ececdd;
+  background: transparent;
+  color: #ececdd;
+  font-family: "Roboto Condensed", sans-serif;
+  width: 20rem;
+  padding-left: 1rem;
+}
+.login-email input:focus,
+.login-password input:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: 0.5s ease;
+  border-bottom: 2px solid #b3b956;
+}
+.login-email input::selection,
+.login-password input::selection {
+  background-color: #a8d1ff;
 }
