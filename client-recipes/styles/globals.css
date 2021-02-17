@@ -305,7 +305,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(
+  background: linear-gradient(
     to right,
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.75)
@@ -331,4 +331,27 @@ a {
 .back-button:hover {
   color: #dae085;
   border-bottom: 2px solid #b3b956;
+}
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../public/BG-2.jpg");
+  background-size: cover;
+  background-position: center;
+
+  color: #ececdd;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.login-content {
+  width: 30vw;
+  height: 50vh;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.9)
+  );
 }
