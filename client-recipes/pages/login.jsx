@@ -5,6 +5,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import { useMutation, gql } from "@apollo/client";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import Cookie from "js-cookie";
 
 const USER_AUTH = gql`
   mutation userAuth($input: AuthInput) {
@@ -15,7 +18,8 @@ const USER_AUTH = gql`
 `;
 
 const Login = () => {
-  const [userAuth] = useMutation(USER_AUTH);
+  const [userAuth, { client }] = useMutation(USER_AUTH);
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,7 +32,26 @@ const Login = () => {
       password: Yup.string().required("Please, enter your password."),
     }),
     onSubmit: async (values) => {
-      console.log(values);
+      try {
+        const { data } = await userAuth({
+          variables: {
+            input: {
+              email: values.email,
+              password: values.password,
+            },
+          },
+        });
+        const { token } = data.userAuth;
+        client.resetStore();
+        localStorage.setItem("token", token);
+        Swal.fire("Welcome!", "User logged in", "success");
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      } catch (error) {
+        console.log(error.message);
+        Swal.fire("Oops!", error.message, "error");
+      }
     },
   });
   return (

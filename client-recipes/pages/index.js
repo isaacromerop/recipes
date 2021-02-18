@@ -1,53 +1,39 @@
-import Head from "next/head";
 import { motion } from "framer-motion";
-import { showUp, appearLeft } from "../styles/animations";
+import { appearLeft } from "../styles/animations";
 import Link from "next/link";
-import NavBar from "../components/NavBar";
+import Layout from "../components/Layout";
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Recipes App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <motion.main
-        variants={showUp}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        key="main-div"
-      >
-        <NavBar />
-        <div className="main-container">
-          <motion.div
-            variants={appearLeft}
-            key="main-container"
-            className="content-container"
-          >
-            <div>
-              <h1>Don't know what to cook?</h1>
+    <Layout>
+      <div className="main-container">
+        <motion.div
+          variants={appearLeft}
+          key="main-container"
+          className="content-container"
+        >
+          <div>
+            <h1>Don't know what to cook?</h1>
+          </div>
+          <div>
+            <div className="find-recipes">
+              <h2>Find recipes</h2>
             </div>
-            <div>
-              <div className="find-recipes">
-                <h2>Find recipes</h2>
-              </div>
-              <div className="button-container">
-                <Link href="/bydish">
-                  <a>
-                    <button>by Dishes</button>
-                  </a>
-                </Link>
-                <Link href="/bycuisine">
-                  <a>
-                    <button>by Cuisine</button>
-                  </a>
-                </Link>
-              </div>
+            <div className="button-container">
+              <Link href="/bydish">
+                <a>
+                  <button>by Dishes</button>
+                </a>
+              </Link>
+              <Link href="/bycuisine">
+                <a>
+                  <button>by Cuisine</button>
+                </a>
+              </Link>
             </div>
-          </motion.div>
-        </div>
-      </motion.main>
-    </div>
+          </div>
+        </motion.div>
+      </div>
+    </Layout>
   );
 }

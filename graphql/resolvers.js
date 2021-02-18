@@ -56,6 +56,9 @@ const resolvers = {
         console.log(error);
       }
     },
+    getUser: (_, {}, ctx) => {
+      return ctx.user;
+    },
   },
   Mutation: {
     newUser: async (_, { input }) => {

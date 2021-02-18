@@ -1,8 +1,25 @@
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import { useQuery, gql } from "@apollo/client";
+import Loading from "../components/Loading";
+
+const GET_USER = gql`
+  query getUser {
+    getUser {
+      userName
+      email
+    }
+  }
+`;
 
 const NavBar = () => {
+  const { data, loading, client } = useQuery(GET_USER);
+  const logOut = () => {
+    localStorage.removeItem("token");
+    client.resetStore();
+  };
+  if (loading) return <Loading />;
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -15,19 +32,25 @@ const NavBar = () => {
           <span>Mr. Cook</span>
         </div>
         <div className="navigation">
-          <Link href="/login">
+          {!data || !data.getUser ? (
+            <Link href="/login">
+              <a>
+                <button>Login</button>
+              </a>
+            </Link>
+          ) : null}
+          {data && data.getUser && (
+            <Link href="/profile">
+              <a>
+                <button>Profile</button>
+              </a>
+            </Link>
+          )}
+          {data && data.getUser && (
             <a>
-              <button>Login</button>
+              <button onClick={logOut}>Logout</button>
             </a>
-          </Link>
-          <Link href="/profile">
-            <a>
-              <button>Profile</button>
-            </a>
-          </Link>
-          <a>
-            <button>Logout</button>
-          </a>
+          )}
         </div>
       </div>
     </motion.nav>
