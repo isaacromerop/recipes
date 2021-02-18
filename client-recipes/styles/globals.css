@@ -99,7 +99,8 @@ a {
   justify-content: flex-start;
 }
 .button-container button,
-.goback button {
+.goback button,
+.login-button {
   margin: 0 1rem;
   font-family: "Roboto Condensed", sans-serif;
   height: 2.5rem;
@@ -111,11 +112,13 @@ a {
   color: #eff4f7d0;
 }
 .button-container button:focus,
-.goback button:focus {
+.goback button:focus,
+.login-button:focus {
   outline: none;
 }
 .button-container button:hover,
-.goback button:hover {
+.goback button:hover.back-button,
+.login-button:hover {
   color: #dae085;
   border: 2px solid #b3b956;
 }
@@ -398,4 +401,7 @@ a {
 .login-email input::selection,
 .login-password input::selection {
   background-color: #a8d1ff;
+}
+.login-button {
+  margin: 2rem 0;
 }
