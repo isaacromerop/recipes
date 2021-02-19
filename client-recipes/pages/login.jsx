@@ -7,7 +7,9 @@ import Link from "next/link";
 import { useMutation, gql } from "@apollo/client";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 import Cookie from "js-cookie";
+import useUserStore from "../context/userContext";
 
 const USER_AUTH = gql`
   mutation userAuth($input: AuthInput) {
@@ -18,7 +20,15 @@ const USER_AUTH = gql`
 `;
 
 const Login = () => {
-  const [userAuth, { client }] = useMutation(USER_AUTH);
+  const setUser = useUserStore((state) => state.setUser);
+  const [userAuth, { client }] = useMutation(USER_AUTH, {
+    update(_, results) {
+      const user = jwt.decode(results.data.userAuth.token);
+      const { userName, ...rest } = user;
+      Cookie.set("user", JSON.stringify(userName), { expires: 1 });
+      setUser(userName);
+    },
+  });
   const router = useRouter();
   const formik = useFormik({
     initialValues: {

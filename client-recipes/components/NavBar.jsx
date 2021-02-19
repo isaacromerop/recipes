@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../components/Loading";
+import useUserStore from "../context/userContext";
 
 const GET_USER = gql`
   query getUser {
@@ -14,10 +15,12 @@ const GET_USER = gql`
 `;
 
 const NavBar = () => {
+  const removeUser = useUserStore((state) => state.removeUser);
   const { data, loading, client } = useQuery(GET_USER);
   const logOut = () => {
     localStorage.removeItem("token");
     client.resetStore();
+    removeUser();
   };
   if (loading) return <Loading />;
   return (

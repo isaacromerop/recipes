@@ -2,9 +2,10 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import { useRouter } from "next/router";
 import SaveButton from "./SaveButton";
-import Link from "next/link";
+import useUserStore from "../context/userContext";
 
 const RecipePreview = ({ id, title, img }) => {
+  const user = useUserStore((state) => state.user);
   const router = useRouter();
   const recipeDetails = (id) => {
     router.push({
@@ -21,7 +22,7 @@ const RecipePreview = ({ id, title, img }) => {
         </div>
         <Card.Meta className="card-meta">
           <span className="date">id: {id}</span>
-          <SaveButton />
+          {user && <SaveButton />}
         </Card.Meta>
       </Card.Content>
     </Card>
