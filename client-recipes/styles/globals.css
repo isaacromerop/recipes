@@ -113,11 +113,12 @@ a {
 }
 .button-container button:focus,
 .goback button:focus,
+.back-button:focus,
 .login-button:focus {
   outline: none;
 }
 .button-container button:hover,
-.goback button:hover.back-button,
+.goback button:hover,
 .login-button:hover {
   color: #dae085;
   border: 2px solid #b3b956;
