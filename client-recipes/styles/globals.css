@@ -74,8 +74,8 @@ a {
 }
 .content-container {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
-  width: 40vw;
-  height: 35vh;
+  width: 50vw;
+  padding-left: 2rem;
 }
 .content-container h1 {
   font-size: 3.5rem;
@@ -97,6 +97,9 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+.button-container {
+  margin-bottom: 1rem;
 }
 .button-container button,
 .goback button,
@@ -202,6 +205,17 @@ a {
 .dish-search button:focus {
   outline: none;
 }
+.card-container {
+  height: 21rem;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-content::after {
+  content: none !important;
+}
 .card-header {
   cursor: pointer;
   font-weight: bold;
@@ -213,6 +227,7 @@ a {
 .card-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .recipe-main-container {
   background-image: url("../public/BG-5.jpg");
@@ -386,7 +401,7 @@ a {
 .login-password input {
   border: none;
   border-bottom: 2px solid #ececdd;
-  background: transparent;
+  background-color: transparent;
   color: #ececdd;
   font-family: "Roboto Condensed", sans-serif;
   width: 20rem;
