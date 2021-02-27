@@ -84,6 +84,7 @@ const Login = () => {
             <motion.div className="login-email">
               <label htmlFor="email">Email:</label>
               <input
+                autoComplete="nope"
                 id="email"
                 type="email"
                 value={formik.values.email}

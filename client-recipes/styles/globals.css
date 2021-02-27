@@ -401,7 +401,7 @@ a {
 .login-password input {
   border: none;
   border-bottom: 2px solid #ececdd;
-  background-color: transparent;
+  background-color: transparent !important;
   color: #ececdd;
   font-family: "Roboto Condensed", sans-serif;
   width: 20rem;

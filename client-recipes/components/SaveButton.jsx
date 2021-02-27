@@ -4,7 +4,7 @@ import { Icon, Popup } from "semantic-ui-react";
 const SaveButton = () => {
   return (
     <Popup
-      content="Saved!"
+      content="Saved in profile."
       hideOnScroll
       inverted
       on="click"
