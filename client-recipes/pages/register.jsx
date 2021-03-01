@@ -89,7 +89,7 @@ const Register = () => {
                 onBlur={formik.handleBlur}
               />
               <AnimatePresence>
-                {formik.touched.username && formik.errors.username && (
+                {formik.touched.userName && formik.errors.userName && (
                   <motion.div
                     initial={{ x: -10 }}
                     animate={{ x: 0 }}
@@ -98,10 +98,14 @@ const Register = () => {
                       type: "spring",
                       stiffness: 500,
                     }}
-                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { type: "tween" },
+                    }}
                     className="error-message"
                   >
-                    <p>{formik.errors.username}</p>
+                    <p>{formik.errors.userName}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -126,7 +130,11 @@ const Register = () => {
                       type: "spring",
                       stiffness: 500,
                     }}
-                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { type: "tween" },
+                    }}
                     className="error-message"
                   >
                     <p>{formik.errors.email}</p>
@@ -154,7 +162,11 @@ const Register = () => {
                       type: "spring",
                       stiffness: 500,
                     }}
-                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { type: "tween" },
+                    }}
                     className="error-message"
                   >
                     <p>{formik.errors.password}</p>

@@ -101,7 +101,11 @@ const Login = () => {
                       type: "spring",
                       stiffness: 500,
                     }}
-                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { type: "tween" },
+                    }}
                     className="error-message"
                   >
                     <p>{formik.errors.email}</p>
@@ -129,7 +133,11 @@ const Login = () => {
                       type: "spring",
                       stiffness: 500,
                     }}
-                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { type: "tween" },
+                    }}
                     className="error-message"
                   >
                     <p>{formik.errors.password}</p>
