@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../components/Loading";
 import useUserStore from "../context/userContext";
+import Cookie from "js-cookie";
 
 const GET_USER = gql`
   query getUser {
@@ -19,6 +20,7 @@ const NavBar = () => {
   const { data, loading, client } = useQuery(GET_USER);
   const logOut = () => {
     localStorage.removeItem("token");
+    Cookie.remove("user");
     client.resetStore();
     removeUser();
   };

@@ -103,7 +103,8 @@ a {
 }
 .button-container button,
 .goback button,
-.login-button {
+.login-button,
+.profile-gotoLogin {
   margin: 0 1rem;
   font-family: "Roboto Condensed", sans-serif;
   height: 2.5rem;
@@ -117,12 +118,14 @@ a {
 .button-container button:focus,
 .goback button:focus,
 .back-button:focus,
-.login-button:focus {
+.login-button:focus,
+.profile-gotoLogin:focus {
   outline: none;
 }
 .button-container button:hover,
 .goback button:hover,
-.login-button:hover {
+.login-button:hover,
+.profile-gotoLogin:hover {
   color: #dae085;
   border: 2px solid #b3b956;
 }
@@ -357,7 +360,6 @@ a {
   background-image: url("../public/BG-2.jpg");
   background-size: cover;
   background-position: center;
-
   color: #ececdd;
   font-family: "Roboto Condensed", sans-serif;
 }
@@ -426,4 +428,26 @@ a {
 }
 .login-button {
   margin: 2rem 0;
+}
+.profile-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../public/BG-6.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #ececdd;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.profile-content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.75)
+  );
 }
