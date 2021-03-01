@@ -7,56 +7,53 @@ import Link from "next/link";
 import { useMutation, gql } from "@apollo/client";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
-import jwt from "jsonwebtoken";
-import Cookie from "js-cookie";
-import useUserStore from "../context/userContext";
 
-const USER_AUTH = gql`
-  mutation userAuth($input: AuthInput) {
-    userAuth(input: $input) {
-      token
+const NEW_USER = gql`
+  mutation newUser($input: UserInput) {
+    newUser(input: $input) {
+      userName
+      email
     }
   }
 `;
 
 const Register = () => {
-  const setUser = useUserStore((state) => state.setUser);
-  const [userAuth, { client }] = useMutation(USER_AUTH, {
-    update(_, results) {
-      const user = jwt.decode(results.data.userAuth.token);
-      const { userName, ...rest } = user;
-      Cookie.set("user", JSON.stringify(userName), { expires: 1 });
-      setUser(userName);
-    },
-  });
+  const [newUser] = useMutation(NEW_USER);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
+      userName: "",
       email: "",
       password: "",
     },
     validationSchema: Yup.object({
+      userName: Yup.string().required("Please, create your username."),
       email: Yup.string()
         .required("Please, enter your email.")
-        .email("Please, enter a valid email."),
-      password: Yup.string().required("Please, enter your password."),
+        .email("Please, provide a valid email."),
+      password: Yup.string()
+        .required("Please, provide your password.")
+        .min(6, "Password must be at least 6 character long."),
     }),
     onSubmit: async (values) => {
       try {
-        const { data } = await userAuth({
+        const { data } = await newUser({
           variables: {
             input: {
+              userName: values.userName,
               email: values.email,
               password: values.password,
             },
           },
         });
-        const { token } = data.userAuth;
-        client.resetStore();
-        localStorage.setItem("token", token);
-        Swal.fire("Welcome!", "User logged in", "success");
+        console.log(data);
+        Swal.fire(
+          "User Registered.",
+          `Welcome to MrCook ${data.newUser.userName}`,
+          "success"
+        );
         setTimeout(() => {
-          router.push("/");
+          router.push("/login");
         }, 1500);
       } catch (error) {
         console.log(error.message);
@@ -81,6 +78,34 @@ const Register = () => {
             Register
           </motion.h1>
           <motion.form variants={scaleUp} onSubmit={formik.handleSubmit}>
+            <motion.div className="login-username">
+              <label htmlFor="userName">Username:</label>
+              <input
+                autoComplete="nope"
+                id="userName"
+                type="text"
+                value={formik.values.userName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <AnimatePresence>
+                {formik.touched.username && formik.errors.username && (
+                  <motion.div
+                    initial={{ x: -10 }}
+                    animate={{ x: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 500,
+                    }}
+                    exit={{ opacity: 0, transition: { type: "tween" } }}
+                    className="error-message"
+                  >
+                    <p>{formik.errors.username}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
             <motion.div className="login-email">
               <label htmlFor="email">Email:</label>
               <input

@@ -382,23 +382,27 @@ a {
   text-align: center;
   height: 60vh;
   width: 40vw;
+  margin-bottom: 2rem;
 }
 .login-form h1 {
   margin: 0;
 }
 .login-email,
-.login-password {
+.login-password,
+.login-username {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
 }
 .login-email label,
-.login-password label {
+.login-password label,
+.login-username label {
   margin: 0.7rem 0;
   text-align: left;
 }
 .login-email input,
-.login-password input {
+.login-password input,
+.login-username input {
   border: none;
   border-bottom: 2px solid #ececdd;
   background-color: transparent !important;
@@ -408,14 +412,16 @@ a {
   padding-left: 1rem;
 }
 .login-email input:focus,
-.login-password input:focus {
+.login-password input:focus,
+.login-username input:focus {
   outline: none;
   transform: scale(1.1);
   transition: 0.5s ease;
   border-bottom: 2px solid #b3b956;
 }
 .login-email input::selection,
-.login-password input::selection {
+.login-password input::selection,
+.login-username input::selection {
   background-color: #a8d1ff;
 }
 .login-button {
