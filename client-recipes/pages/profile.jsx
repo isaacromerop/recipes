@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { showUp } from "../styles/animations";
 import { useQuery, gql } from "@apollo/client";
-import { Grid } from "semantic-ui-react";
+import { Grid, Transition } from "semantic-ui-react";
 
 const USER_RECIPES = gql`
   query getReciperByUser {
@@ -40,18 +40,23 @@ const Profile = () => {
           <Grid centered columns={4}>
             {data.getRecipesByUser.length > 0 ? (
               <Grid.Row>
-                {data &&
-                  data.getRecipesByUser &&
-                  data.getRecipesByUser.map((recipe) => (
-                    <Grid.Column key={recipe._id} style={{ marginBottom: 30 }}>
-                      <RecipePreview
-                        _id={recipe._id}
-                        id={recipe.id}
-                        title={recipe.title}
-                        img={recipe.image}
-                      />
-                    </Grid.Column>
-                  ))}
+                <Transition.Group>
+                  {data &&
+                    data.getRecipesByUser &&
+                    data.getRecipesByUser.map((recipe) => (
+                      <Grid.Column
+                        key={recipe._id}
+                        style={{ marginBottom: 30 }}
+                      >
+                        <RecipePreview
+                          _id={recipe._id}
+                          id={recipe.id}
+                          title={recipe.title}
+                          img={recipe.image}
+                        />
+                      </Grid.Column>
+                    ))}
+                </Transition.Group>
               </Grid.Row>
             ) : (
               <h1 style={{ margin: "2rem 0", color: "#eff4f7d0" }}>
