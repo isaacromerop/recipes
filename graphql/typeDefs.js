@@ -7,14 +7,15 @@ const typeDefs = gql`
     created: String
   }
   type Recipe {
-    id: ID!
-    title: String!
-    image: String!
-    created: String!
+    _id: ID
+    id: ID
+    title: String
+    image: String
+    created: String
     summary: String
     analyzedInstructions: [Instruction]
     spoonacularSourceUrl: String
-    user: String
+    user: ID
     extendedIngredients: [Ingredient]
     readyInMinutes: Int
     servings: Int

@@ -223,6 +223,7 @@ a {
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2rem;
+  color: #000;
 }
 .card-header:hover {
   color: #b3b956;
@@ -450,4 +451,20 @@ a {
     rgba(0, 0, 0, 0.7),
     rgba(0, 0, 0, 0.75)
   );
+}
+.profile {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+.profile-body {
+  margin: 0 2rem;
+  height: 74vh;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

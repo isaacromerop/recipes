@@ -134,7 +134,7 @@ const resolvers = {
       }
       try {
         await Recipe.findByIdAndDelete({ _id: id });
-        return "Recipe removed from saved.";
+        return "Recipe removed from profile.";
       } catch (error) {
         console.log(error);
       }
