@@ -4,8 +4,15 @@ import { useQuery, gql } from "@apollo/client";
 import Loading from "../../components/Loading";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { scaleUp, showUp, appearRight } from "../../styles/animations";
-import { Icon } from "semantic-ui-react";
+import {
+  scaleUp,
+  showUp,
+  appearRight,
+  appearUp,
+} from "../../styles/animations";
+import { Icon, Popup } from "semantic-ui-react";
+import SaveButton from "../../components/SaveButton";
+import useUserStore from "../../context/userContext";
 
 const GET_RECIPE = gql`
   query getRecipe($id: ID!) {
@@ -32,6 +39,7 @@ const GET_RECIPE = gql`
 `;
 
 const Recipe = () => {
+  const user = useUserStore((state) => state.user);
   const router = useRouter();
   const {
     query: { id },
@@ -52,6 +60,37 @@ const Recipe = () => {
       {data && data.getRecipe ? (
         <div className="recipe-container">
           <div className="recipe-image">
+            <motion.div variants={appearUp} className="image-header">
+              <Icon
+                onClick={() => router.back()}
+                name="arrow left"
+                size="big"
+                link
+                inverted
+              />
+              <SaveButton
+                className="save-button"
+                id={id}
+                title={data.getRecipe.title}
+                img={data.getRecipe.image}
+              />
+              {user && (
+                <Popup
+                  content="Go to profile"
+                  hideOnScroll
+                  inverted
+                  trigger={
+                    <Icon
+                      name="user"
+                      size="big"
+                      inverted
+                      link
+                      onClick={() => router.push("/profile")}
+                    />
+                  }
+                />
+              )}
+            </motion.div>
             <motion.div variants={scaleUp} className="image-container">
               <img src={data.getRecipe.image} />
             </motion.div>

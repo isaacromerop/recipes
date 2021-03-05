@@ -4,9 +4,10 @@ import Loading from "../components/Loading";
 import RecipePreview from "../components/RecipePreview";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import { showUp } from "../styles/animations";
+import { appearUp, showUp } from "../styles/animations";
 import { useQuery, gql } from "@apollo/client";
-import { Grid, Transition } from "semantic-ui-react";
+import { Grid, Transition, Icon, Popup } from "semantic-ui-react";
+import Cookie from "js-cookie";
 
 const USER_RECIPES = gql`
   query getReciperByUser {
@@ -21,9 +22,16 @@ const USER_RECIPES = gql`
 `;
 
 const Profile = () => {
-  const user = useUserStore((state) => state.user);
+  const { user, removeUser } = useUserStore((state) => state);
   const router = useRouter();
-  const { data, loading } = useQuery(USER_RECIPES);
+  const logOut = () => {
+    localStorage.removeItem("token");
+    Cookie.remove("user");
+    client.resetStore();
+    removeUser();
+    router.push("/");
+  };
+  const { data, loading, client } = useQuery(USER_RECIPES);
   if (loading) return <Loading />;
   return user ? (
     <motion.div
@@ -33,11 +41,25 @@ const Profile = () => {
       className="profile-page"
     >
       <div className="profile">
-        <div className="dish-head">
-          <h1>Profile Page</h1>
-        </div>
+        <motion.div variants={appearUp} className="profile-head">
+          <Icon
+            link
+            onClick={() => router.push("/")}
+            name="arrow left"
+            size="big"
+          />
+          <div className="profile-title">
+            <h1>{user}'s profile</h1>
+          </div>
+          <Popup
+            content="Logout"
+            inverted
+            hideOnScroll
+            trigger={<Icon onClick={logOut} name="user x" size="big" link />}
+          />
+        </motion.div>
         <motion.div className="profile-body">
-          <Grid centered columns={4}>
+          <Grid centered>
             {data.getRecipesByUser.length > 0 ? (
               <Grid.Row>
                 <Transition.Group>
@@ -45,6 +67,9 @@ const Profile = () => {
                     data.getRecipesByUser &&
                     data.getRecipesByUser.map((recipe) => (
                       <Grid.Column
+                        mobile={16}
+                        tablet={8}
+                        computer={4}
                         key={recipe._id}
                         style={{ marginBottom: 30 }}
                       >

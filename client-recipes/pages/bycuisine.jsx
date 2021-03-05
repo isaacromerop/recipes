@@ -55,10 +55,10 @@ const ByDish = () => {
       className="cuisine-main-container"
     >
       <motion.div variants={appearUp} className="dish-head">
-        <p htmlFor="bydish">What cuisine for today?</p>
         <button onClick={() => router.push("/")} className="back-button">
           <Icon name="arrow left" size="big" />
         </button>
+        <p htmlFor="bydish">What cuisine for today?</p>
         <div className="dish-search">
           <form onSubmit={formik.handleSubmit}>
             <div>
@@ -84,13 +84,19 @@ const ByDish = () => {
       </motion.div>
       {data && data.getRecipeByCuisine && (
         <motion.div variants={scaleUp} className="dish-body">
-          <Grid centered columns={4}>
+          <Grid centered>
             {data.getRecipeByCuisine.length > 0 ? (
               <Grid.Row>
                 {data &&
                   data.getRecipeByCuisine &&
                   data.getRecipeByCuisine.map((recipe) => (
-                    <Grid.Column key={recipe.id} style={{ marginBottom: 30 }}>
+                    <Grid.Column
+                      mobile={16}
+                      tablet={8}
+                      computer={4}
+                      key={recipe.id}
+                      style={{ marginBottom: 30 }}
+                    >
                       <RecipePreview
                         id={recipe.id}
                         title={recipe.title}

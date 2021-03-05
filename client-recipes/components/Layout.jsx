@@ -10,6 +10,14 @@ const Layout = ({ children }) => {
       <Head>
         <title>Recipes App</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
+        <meta
+          name="description"
+          content="Look for the recipe you need to impress the person you love!"
+        />
       </Head>
       <motion.main
         variants={showUp}
